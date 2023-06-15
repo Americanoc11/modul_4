@@ -1,5 +1,7 @@
-package com.example.change_money;
+package com.example.change_money.controller;
 
+import com.example.change_money.service.IRateMoneyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,16 +14,22 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/")
 public class RateMoneyController {
+    @Autowired
+    private IRateMoneyService iRateMoneyService;
+
     @GetMapping("")
     public String init(HttpServletRequest request) {
         return "form-rate-money";
     }
 
     @PostMapping("/change")
-    public String changeMoney(@RequestParam int usd, Model model) {
-        int vnd=23000;
-        int result=usd*vnd;
-        model.addAttribute("result",result);
+    public String changeMoney(@RequestParam("usd") int usd, Model model) {
+        int result = iRateMoneyService.change(usd);
+        if (result != 0) {
+            model.addAttribute("result", result);
+        } else {
+            model.addAttribute("result", "Số nhập không được âm,xin nhập lại");
+        }
         return "/form-rate-money";
     }
 }
