@@ -18,9 +18,13 @@ public class SandwichController {
     }
 
     @PostMapping("/create")
-    public String save(@RequestParam("spice") String[] spice, Model model) {
+    public String save(@RequestParam(value = "spice",required = false) String[] spice, Model model) {
         System.out.println(Arrays.toString(spice));
-        model.addAttribute("result", Arrays.toString(spice));
+        if (spice==null){
+            model.addAttribute("result","No spice");
+        } else {
+            model.addAttribute("result", Arrays.toString(spice));
+        }
         return "form-create";
     }
 }

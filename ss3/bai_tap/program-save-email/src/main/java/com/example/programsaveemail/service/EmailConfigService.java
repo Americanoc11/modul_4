@@ -9,11 +9,12 @@ import java.util.List;
 @Service
 public class EmailConfigService implements IEmailConfigService {
     private static List<EmailConfig> emailList;
+
     static {
-        emailList= new ArrayList<>();
-        emailList.add(new EmailConfig(1L,"Thor"));
-        emailList.add(new EmailConfig(2L,"Caption American"));
-        emailList.add(new EmailConfig(3L,"Iron man"));
+        emailList = new ArrayList<>();
+        emailList.add(new EmailConfig(1L, "Thor", "Vua của Agaska", "English", 15, true));
+        emailList.add(new EmailConfig(2L, "Caption American", "Đội trưởng nước Mỹ", "VietNamese", 15, true));
+        emailList.add(new EmailConfig(3L, "Iron man", "Thợ máy siêu anh hùng", "English", 15, true));
     }
 
     @Override
@@ -23,6 +24,32 @@ public class EmailConfigService implements IEmailConfigService {
 
     @Override
     public void save(EmailConfig emailConfig) {
+        emailConfig.setId(emailList.size() + 1L);
+        emailConfig.setEmailAddress(emailConfig.getEmailAddress());
+        emailList.add(emailConfig);
 
+    }
+
+    @Override
+    public Object findById(long id) {
+        for (EmailConfig e : emailList) {
+            if (e.getId() == id) {
+                return e;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void update(EmailConfig emailConfig) {
+        for (EmailConfig e : emailList) {
+            if (e.getId() == emailConfig.getId()) {
+                e.setEmailAddress(emailConfig.getEmailAddress());
+                e.setDescribe(emailConfig.getDescribe());
+                e.setLanguage(emailConfig.getLanguage());
+                e.setSpamFillter(emailConfig.getSpamFillter());
+                e.setPageSize(emailConfig.getPageSize());
+            }
+        }
     }
 }

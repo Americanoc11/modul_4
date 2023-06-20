@@ -1,2 +1,17 @@
-package com.example.demouploadfile.service;public interface IProductService {
+package com.example.demouploadfile.service;
+
+import com.example.demouploadfile.model.Product;
+
+import java.util.List;
+
+public interface IProductService {
+    List<Product> findAll();
+
+    void save(Product product);
+
+    Product findById(int id);
+
+    void update(int id, Product product);
+
+    void remove(int id);
 }

@@ -22,7 +22,17 @@ public class CalculatorController {
 
     @PostMapping("calculator")
     public String getOperator(@RequestParam("operator1") double operator1, @RequestParam("operator2") double operator2, @RequestParam("calculations") String calculations, Model model) {
-        iCalculatorService.checkOperator(operator1, operator2, calculations, model);
+        double result=iCalculatorService.checkOperator(operator1, operator2, calculations, model);
+        if (result!=0){
+            model.addAttribute("operator1", operator1);
+            model.addAttribute("operator2", operator2);
+            model.addAttribute("result", result);
+        } else {
+            String result1="Can't division zero";
+            model.addAttribute("operator1", operator1);
+            model.addAttribute("operator2", operator2);
+            model.addAttribute("result", result1);
+        }
         return "home";
     }
 

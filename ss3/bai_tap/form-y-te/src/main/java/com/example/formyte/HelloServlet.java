@@ -1,4 +1,4 @@
-package com.example.webproductmanagement;
+package com.example.formyte;
 
 import java.io.*;
 import javax.servlet.http.*;

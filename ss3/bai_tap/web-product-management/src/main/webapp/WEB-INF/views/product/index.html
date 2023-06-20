@@ -1,10 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-$END$
+<h1>Quản Lí sản phẩm</h1>
+<h5>Danh sách sản phẩm</h5>
+<button type="submit" class="btn btn-primary"
+        onclick="window.location.href='/product/create'">
+    Thêm sản phẩm
+</button>
+
+<table class="table">
+    <tr>
+        <th>STT</th>
+        <th>Tên</th>
+        <th>Giá tiền</th>
+    </tr>
+    <tr th:each="element, item:${productList}">
+        <td th:text="${element.id}"></td>
+        <td th:text="${element.name}"></td>
+        <td th:text="${element.price}"></td>
+        <td>
+            <button class="btn btn-outline-primary">
+                <a th:href="@{/product/{id}/edit(id=${element.id})}"
+                   style="text-decoration: none; color: lightskyblue">
+                    Sửa
+                </a>
+            </button>
+        </td>
+        <td>
+            <button class="btn btn-outline-danger">
+                <a th:href="@{/product/{id}/delete(id=${element.id})}"
+                   style="text-decoration: none; color: red">
+                    Xóa
+                </a>
+            </button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-danger btn-lg" data-bs-toggle="modal" data-bs-target="#modelId"
+                    th:onclick="|deleteProduct(${element.id})|">
+                Xóa
+            </button>
+
+        </td>
+    </tr>
+</table>
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modelTitleId"></h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có muốn xóa sản phẩm <span id="idDelete"></span>
+            </div>
+            <div class="modal-footer">
+                <form th:action="@{/product/delete}" method="post">
+                    <input type="hidden" id="id">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                    <button type="submit" class="btn btn-primary">Có</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous">
+</script>
+<script>
+    function deleteProduct(id) {
+        document.getElementById("id").value = id;
+        document.getElementById("idDelete").innerText = id;
+    }
+</script>
 </body>
 </html>

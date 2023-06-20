@@ -8,4 +8,8 @@ public interface IEmailConfigService {
     List<EmailConfig> findAll();
 
     void save(EmailConfig emailConfig);
+
+    Object findById(long id);
+
+    void update(EmailConfig emailConfig);
 }

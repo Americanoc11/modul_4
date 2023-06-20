@@ -1,12 +1,12 @@
-package com.example.demouploadfile;
+package com.example.demouploadfile.config;
 
-import com.example.demouploadfile.controller.ProductController;
+import com.example.demouploadfile.config.AppConfigurations;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] {ProductController.AppConfigurations.class};
+        return new Class[] {AppConfigurations.class};
     }
 
     @Override
