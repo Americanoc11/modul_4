@@ -10,18 +10,27 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-<h1>Quản lí sản phẩm</h1>
-<form th:action="@{/product/edit}" th:object="${product}" method="post">
-    <h3>Sửa sản phẩm</h3>
-    <input type="hidden" th:field="*{id}">
-    <span>Tên sản phẩm</span><br>
-    <input th:field="*{name}" type="text" placeholder="Nhập tên cho sản phẩm"><br>
-    <span>Mô tả sản phẩm</span><br>
-    </textarea><br>
-    <span>Giá tiền</span><br>
-    <input th:field="*{price}" type="number"  placeholder="Nhập giá tiền cho sản phẩm"><br>
-    <button type="submit">Cập nhập</button>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 mb-5">
+            <h1>Quản lí sản phẩm</h1>
+            <form th:action="@{/product/edit}" th:object="${product}" method="post">
+                <h3>Sửa sản phẩm</h3>
+                <input type="hidden" th:field="*{id}">
+                <span>Tên sản phẩm</span><br>
+                <input th:field="*{name}" type="text" placeholder="Nhập tên cho sản phẩm"><br>
+                <span>Mô tả sản phẩm</span><br>
+                <textarea th:field="*{describe}" cols="30" rows="10"></textarea>
+                <span>Giá tiền</span><br>
+                <input th:field="*{price}" type="number" placeholder="Nhập giá tiền cho sản phẩm"><br>
+                <button type="submit" class="btn btn-outline-primary">Cập nhập</button>
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>

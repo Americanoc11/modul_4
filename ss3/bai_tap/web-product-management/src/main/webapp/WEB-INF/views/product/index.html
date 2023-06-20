@@ -12,10 +12,42 @@
 <body>
 <h1>Quản Lí sản phẩm</h1>
 <h5>Danh sách sản phẩm</h5>
-<button type="submit" class="btn btn-primary"
-        onclick="window.location.href='/product/create'">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modelCreate">
     Thêm sản phẩm
 </button>
+
+<!-- Modal -->
+<div class="modal fade" id="modelCreate" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modelTitleId1">
+                    Thêm mới sản phẩm
+                </h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form th:action="@{/product/create}" th:object="${product}" method="post">
+                <div class="modal-body">
+                    <span>Tên sản phẩm</span><br>
+                    <input th:field="*{name}" type="text" name="name" placeholder="Nhập tên cho sản phẩm"><br>
+                    <span>Mô tả sản phẩm</span><br>
+                    <textarea name="describe" th:field="*{describe}" cols="30" rows="10"
+                              placeholder="Nhập mô tả cho sản phẩm">
+                     </textarea><br>
+                    <span>Giá tiền</span><br>
+                    <input th:field="*{price}" type="number" placeholder="Nhập giá tiền cho sản phẩm"><br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <table class="table">
     <tr>
@@ -36,18 +68,11 @@
             </button>
         </td>
         <td>
-            <button class="btn btn-outline-danger">
-                <a th:href="@{/product/{id}/delete(id=${element.id})}"
-                   style="text-decoration: none; color: red">
-                    Xóa
-                </a>
-            </button>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-outline-danger btn-lg" data-bs-toggle="modal" data-bs-target="#modelId"
                     th:onclick="|deleteProduct(${element.id})|">
                 Xóa
             </button>
-
         </td>
     </tr>
 </table>
@@ -67,7 +92,7 @@
             </div>
             <div class="modal-footer">
                 <form th:action="@{/product/delete}" method="post">
-                    <input type="hidden" id="id">
+                    <input type="hidden" id="id" name="id">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
                     <button type="submit" class="btn btn-primary">Có</button>
                 </form>

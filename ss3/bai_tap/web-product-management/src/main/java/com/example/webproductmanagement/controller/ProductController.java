@@ -19,14 +19,9 @@ public class ProductController {
     @GetMapping("")
     public String showList(Model model) {
         List<Product> productList = iProductService.findAll();
+        model.addAttribute("product", new Product());
         model.addAttribute("productList", productList);
         return "/product/index";
-    }
-
-    @GetMapping("/create")
-    public String showNewForm(Model model) {
-        model.addAttribute("product", new Product());
-        return "/product/create";
     }
 
     @PostMapping("/create")
@@ -46,12 +41,6 @@ public class ProductController {
     public String updateProduct(@ModelAttribute("product") Product product) {
         iProductService.update(product);
         return "redirect:/product/";
-    }
-
-    @GetMapping("/{id}/delete")
-    public String showFormDelete(@PathVariable int id, Model model) {
-        model.addAttribute("product", iProductService.findById(id));
-        return "/product/delete";
     }
 
     @PostMapping("/delete")
