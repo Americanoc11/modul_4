@@ -16,7 +16,6 @@
 </head>
 <body>
 <h1>Email Configuration</h1>
-<form:form modelAttribute=""></form:form>
 <form:form action="/email-config" method="post" modelAttribute="emailConfig">
     <form:label path="emailAddress"/>Email Address
     <br>
