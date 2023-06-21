@@ -1,12 +1,11 @@
 package com.example.appcaculator.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 @Service
 public class CalculatorService implements ICalculatorService {
     @Override
-    public double checkOperator(double operator1, double operator2, String calculations, Model model) {
+    public double checkOperator(double operator1, double operator2, String calculations) {
         double result;
         switch (calculations) {
             case "addition":
@@ -20,9 +19,9 @@ public class CalculatorService implements ICalculatorService {
                 return result;
             case "division":
                 if (operator2 == 0) {
-                    return operator2;
+                    throw new ArithmeticException();
                 } else {
-                    result = operator1 / operator2;
+                    result = operator1 * operator2;
                     return result;
                 }
         }

@@ -1,6 +1,8 @@
 package com.example.programsaveemail.service;
 
 import com.example.programsaveemail.model.EmailConfig;
+import com.example.programsaveemail.repository.IEmailConfigRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,48 +10,26 @@ import java.util.List;
 
 @Service
 public class EmailConfigService implements IEmailConfigService {
-    private static List<EmailConfig> emailList;
-
-    static {
-        emailList = new ArrayList<>();
-        emailList.add(new EmailConfig(1L, "Thor", "Vua của Agaska", "English", 15, true));
-        emailList.add(new EmailConfig(2L, "Caption American", "Đội trưởng nước Mỹ", "VietNamese", 15, true));
-        emailList.add(new EmailConfig(3L, "Iron man", "Thợ máy siêu anh hùng", "English", 15, true));
-    }
+   @Autowired
+    private IEmailConfigRepository iEmailConfigRepository;
 
     @Override
     public List<EmailConfig> findAll() {
-        return emailList;
+        return iEmailConfigRepository.findAll();
     }
 
     @Override
     public void save(EmailConfig emailConfig) {
-        emailConfig.setId(emailList.size() + 1L);
-        emailConfig.setEmailAddress(emailConfig.getEmailAddress());
-        emailList.add(emailConfig);
-
+iEmailConfigRepository.save(emailConfig);
     }
 
     @Override
     public Object findById(long id) {
-        for (EmailConfig e : emailList) {
-            if (e.getId() == id) {
-                return e;
-            }
-        }
-        return null;
+        return iEmailConfigRepository.findById(id);
     }
 
     @Override
     public void update(EmailConfig emailConfig) {
-        for (EmailConfig e : emailList) {
-            if (e.getId() == emailConfig.getId()) {
-                e.setEmailAddress(emailConfig.getEmailAddress());
-                e.setDescribe(emailConfig.getDescribe());
-                e.setLanguage(emailConfig.getLanguage());
-                e.setSpamFillter(emailConfig.getSpamFillter());
-                e.setPageSize(emailConfig.getPageSize());
-            }
-        }
+        iEmailConfigRepository.update(emailConfig);
     }
 }
