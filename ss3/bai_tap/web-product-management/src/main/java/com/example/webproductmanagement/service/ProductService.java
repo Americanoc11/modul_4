@@ -36,4 +36,15 @@ public class ProductService implements IProductService {
     public void delete(int id) {
         iProductRepository.delete(id);
     }
+
+    @Override
+    public boolean checkProduct(Product product) {
+        return iProductRepository.checkProduct(product);
+    }
+
+    @Override
+    public boolean findProductById(int id) {
+        return iProductRepository.findProductById(id);
+    }
+
 }

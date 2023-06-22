@@ -17,6 +17,9 @@
             <h1>Quản lí sản phẩm</h1>
             <form th:action="@{/product/edit}" th:object="${product}" method="post">
                 <h3>Sửa sản phẩm</h3>
+                <span th:if="${result!=true}">
+                <span style="text-decoration: red"> Id doesn't exits</span>
+            </span>
                 <input type="hidden" th:field="*{id}">
                 <span>Tên sản phẩm</span><br>
                 <input th:field="*{name}" type="text" placeholder="Nhập tên cho sản phẩm"><br>

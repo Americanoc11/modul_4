@@ -15,4 +15,8 @@ public interface IProductRepository {
     void update(Product product);
 
     void delete(int id);
+
+    boolean checkProduct(Product product);
+
+    boolean findProductById(int id);
 }
