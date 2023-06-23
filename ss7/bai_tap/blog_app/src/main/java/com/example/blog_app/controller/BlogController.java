@@ -1,11 +1,16 @@
 package com.example.blog_app.controller;
 
 import com.example.blog_app.model.Blog;
+import com.example.blog_app.model.Category;
 import com.example.blog_app.service.IBlogService;
+import com.example.blog_app.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -15,16 +20,25 @@ public class BlogController {
     @Autowired
     private IBlogService iBlogService;
 
+    @Autowired
+    private ICategoryService iCategoryService;
+
 
     @GetMapping("")
-    public String showList(Model model) {
-        List<Blog> blogList = iBlogService.findAll();
-//        if (blogList.size() == 0) {
-//        } else {
-//        }
+    public String showList(Model model,
+                           @PageableDefault(size = 2)
+                           Pageable pageable) {
+        Page<Blog> blogList = iBlogService.findAllByFlagDeleteFalse(pageable);
+        List<Category> categoryList=iCategoryService.findAll();
+////        if (blogList.size() == 0) {
+////        } else {
+////        }
+        model.addAttribute("category",new Category());
+        model.addAttribute("categoryList",categoryList);
         model.addAttribute("blogList", blogList);
-        model.addAttribute("result", "Blog empty");
+//        model.addAttribute("result", "Blog empty");
         model.addAttribute("blog", new Blog());
+        model.addAttribute("blogList",blogList) ;
         return "/blog/list";
     }
 
