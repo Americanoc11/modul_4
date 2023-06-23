@@ -18,6 +18,9 @@
                 <div class="col-12">
                     <form action="/product/update" method="post" th:object="${product}">
                         <h5 style="text-align: center">Form Edit</h5><br>
+                        <span th:if="${result!=true}" style="text-align: center; color: red">
+Id doesn't exits
+                        </span>
                         <input type="hidden" th:field="*{id}">
                         <span>Name</span>
                         <br><input type="text" th:field="*{name}"><br>

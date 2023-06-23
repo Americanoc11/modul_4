@@ -36,4 +36,9 @@ public class ProductService implements IProductService {
     public void update(Product product) {
         iProductRepository.update(product);
     }
+
+    @Override
+    public boolean checkProduct(int id) {
+        return iProductRepository.checkProduct(id);
+    }
 }

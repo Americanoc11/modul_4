@@ -38,7 +38,20 @@ public class BlogService implements IBlogService {
     }
 
     @Override
-    public List<Blog> findBlogByNameContainingIgnoreCase(String name) {
-        return iBlogRepository.findBlogByNameContainingIgnoreCase(name);
+    public List<Blog> searchByNameContainingIgnoreCase(String name) {
+        return this.iBlogRepository.searchByNameContainingIgnoreCase(name);
     }
+
+    @Override
+    public boolean check(Integer id) {
+        List<Blog> blogList = iBlogRepository.findAllById(id);
+        for (Blog b : blogList) {
+            if (b.getId()==id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }

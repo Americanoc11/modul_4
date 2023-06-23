@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport"
@@ -12,6 +12,9 @@
 <body>
 <form th:action="@{/blog/update}" th:object="${blog}" method="post">
     <input type="hidden" th:field="*{id}">
+    <span th:if="${result!=true}">
+        <span>Id doesn't exit</span>
+    </span>
     <table class="table">
         <tr>
             <td>Title</td>

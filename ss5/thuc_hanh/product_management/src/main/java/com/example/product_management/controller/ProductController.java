@@ -37,8 +37,10 @@ public class ProductController {
 
     @GetMapping("/update/{id}")
     public String showFormEdit(@PathVariable("id") int id, Model model) {
-        Product product = iProductService.findOne(id);
-        model.addAttribute("product", product);
+        boolean check = iProductService.checkProduct(id);
+            Product product = iProductService.findOne(id);
+            model.addAttribute("product", product);
+            model.addAttribute("result",check);
         return "/product/edit";
     }
 

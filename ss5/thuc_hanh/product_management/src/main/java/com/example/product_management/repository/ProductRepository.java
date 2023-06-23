@@ -86,4 +86,15 @@ public class ProductRepository implements IProductRepository {
             }
         }
     }
+
+    @Override
+    public boolean checkProduct(int id) {
+        List<Product> productList = this.findAll();
+        for (Product p : productList) {
+            if (p.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

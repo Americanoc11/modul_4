@@ -5,35 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="272707ef-90b8-49e8-896b-bc18bfd45eee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/src/main/java/com/example/demoorm/HelloServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/src/main/java/com/example/demoorm/config/AppConfigurations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/src/main/java/com/example/demoorm/config/AppInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/src/main/java/com/example/demoorm/controller/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/src/main/java/com/example/demoorm/model/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/src/main/java/com/example/demoorm/service/ConnectionUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/src/main/java/com/example/demoorm/service/IProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/src/main/java/com/example/demoorm/service/ProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/src/main/resources/hibernate.conf.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/src/main/webapp/WEB-INF/views/product/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../thuc_hanh/demo-orm/src/main/webapp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss1/thuc_hanh/Module4" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss1/thuc_hanh/Module4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss2/thuc_hanh/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss2/thuc_hanh/customer-management" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3/bai_tap/program-save-email/src/main/webapp/WEB-INF/views/email-config.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3/bai_tap/program-save-email/src/main/webapp/WEB-INF/views/email-config.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss3/bai_tap/web-product-management/src/main/webapp/WEB-INF/views/product/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss3/bai_tap/web-product-management/src/main/webapp/WEB-INF/views/product/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../thuc_hanh/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../thuc_hanh/customer-management" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6/bai_tap/blog_app/src/main/java/com/example/blog_app/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6/bai_tap/blog_app/src/main/java/com/example/blog_app/controller/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6/bai_tap/blog_app/src/main/java/com/example/blog_app/repository/IBlogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6/bai_tap/blog_app/src/main/java/com/example/blog_app/repository/IBlogRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6/bai_tap/blog_app/src/main/java/com/example/blog_app/service/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6/bai_tap/blog_app/src/main/java/com/example/blog_app/service/BlogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6/bai_tap/blog_app/src/main/java/com/example/blog_app/service/IBlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6/bai_tap/blog_app/src/main/java/com/example/blog_app/service/IBlogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6/bai_tap/blog_app/src/main/resources/templates/blog/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6/bai_tap/blog_app/src/main/resources/templates/blog/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss6/bai_tap/blog_app/src/main/resources/templates/blog/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss6/bai_tap/blog_app/src/main/resources/templates/blog/list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,26 +79,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/codegym/module_4/ss5/thuc_hanh/product_management",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "spring.configuration.checksum": "a03ecb7280bd48895c19ba432c7f82f6",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/codegym/module_4/ss5/thuc_hanh/product_management&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;a03ecb7280bd48895c19ba432c7f82f6&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\codegym\module_4\ss5\bai_tap\web-product-management\src\main\resources" />
@@ -231,6 +211,7 @@
       <workItem from="1687329940203" duration="1150000" />
       <workItem from="1687331701700" duration="2155000" />
       <workItem from="1687339289831" duration="1545000" />
+      <workItem from="1687478022160" duration="65000" />
     </task>
     <servers />
   </component>

@@ -14,4 +14,6 @@ public interface IProductService {
     Product findOne(Integer id);
 
     void update(Product product);
+
+    boolean checkProduct(int id);
 }

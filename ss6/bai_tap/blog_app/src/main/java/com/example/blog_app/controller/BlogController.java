@@ -42,7 +42,9 @@ public class BlogController {
 
     @GetMapping("/update/{id}")
     public String showFormEdit(@PathVariable("id") Integer id, Model model) {
+        boolean checkBlog=iBlogService.check(id);
         Blog blog = iBlogService.findById(id);
+        model.addAttribute("result",checkBlog);
         model.addAttribute("blog", blog);
         return "/blog/edit";
     }
@@ -55,8 +57,8 @@ public class BlogController {
 
     @GetMapping("/search")
     public String searchProduct(@RequestParam("name") String name, Model model) {
-        List<Blog> blogList = iBlogService.findBlogByNameContainingIgnoreCase(name);
-        model.addAttribute("blogList", blogList);
+        model.addAttribute("blog",new Blog());
+        model.addAttribute("blogList", iBlogService.searchByNameContainingIgnoreCase(name));
         return "blog/list";
     }
 }

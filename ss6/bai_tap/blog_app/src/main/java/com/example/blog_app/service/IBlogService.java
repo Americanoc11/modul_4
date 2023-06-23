@@ -15,5 +15,7 @@ public interface IBlogService {
 
     void update(Blog blog);
 
-    List<Blog> findBlogByNameContainingIgnoreCase(String name);
+    List<Blog> searchByNameContainingIgnoreCase(String name);
+
+    boolean check(Integer id);
 }
