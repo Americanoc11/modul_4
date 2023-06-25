@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport"
@@ -72,6 +72,13 @@
             </form>
         </div>
     </div>
+    <div class="row justify-content-center">
+        <div class="col col-9 alert alert-danger alert-message text-center" role="alert"
+             th:if="${invalidIDMessage != null}"
+             th:text="${ invalidIDMessage }">
+        </div>
+
+    </div>
     <table class="table">
         <tr>
             <th>#</th>
@@ -83,11 +90,6 @@
             <td th:text="${element.id}"></td>
             <td th:text="${element.name}"></td>
             <td>
-                <!--                &lt;!&ndash; Button trigger modal Delete &ndash;&gt;-->
-                <!--                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"-->
-                <!--                        data-bs-target="#modelTitleIdDelete" th:onclick="|remove(${element.id})|">-->
-                <!--                    Delete-->
-                <!--                </button>-->
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                         data-bs-target="#modelIdDelete" th:onclick="|remove(${element.id})|">
@@ -107,8 +109,13 @@
     </table>
 </div>
 <div class="d-flex">
-    <a th:if="">
-
+    <a th:if="${blogList.hasPrevious()}" th:href="@{/blog(page=${blogList.number+(-1)})}">
+        Previous
+    </a>
+    <a class="mx-2"
+       th:if="${blogList.hasNext()}"
+       th:href="@{/blog(page=${blogList.number+1})}">
+        Next
     </a>
 </div>
 

@@ -10,11 +10,10 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
+<h4>Form Edit</h4>
 <form th:action="@{/blog/update}" th:object="${blog}" method="post">
+
     <input type="hidden" th:field="*{id}">
-    <span th:if="${result!=true}">
-        <span>Id doesn't exit</span>
-    </span>
     <table class="table">
         <tr>
             <td>Title</td>

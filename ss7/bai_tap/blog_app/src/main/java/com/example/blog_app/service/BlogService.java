@@ -38,6 +38,8 @@ public class BlogService implements IBlogService {
         this.iBlogRepository.saveAndFlush(blog);
     }
 
+
+
     @Override
     public List<Blog> findBlogByNameContainingIgnoreCase(String name) {
         return iBlogRepository.findBlogByNameContainingIgnoreCase(name);
@@ -46,6 +48,16 @@ public class BlogService implements IBlogService {
     @Override
     public Page<Blog> findAllByFlagDeleteFalse(Pageable pageable) {
         return iBlogRepository.findAllByFlagDeleteFalse(pageable);
+    }
+
+    @Override
+    public boolean existsById(Integer id) {
+        return iBlogRepository.existsById(id);
+    }
+
+    @Override
+    public Page<Blog> findBlogByNameContainingIgnoreCaseAndFlagDeleteFalse(Pageable pageable, String name) {
+        return iBlogRepository.findBlogByNameContainingIgnoreCaseAndFlagDeleteFalse(pageable,name);
     }
 
 

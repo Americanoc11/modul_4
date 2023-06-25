@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IBlogRepository extends JpaRepository<Blog, Integer> {
     List<Blog> findBlogByNameContainingIgnoreCase(String name);
-
     Page<Blog>findAllByFlagDeleteFalse(Pageable pageable);
+    Page<Blog>findBlogByNameContainingIgnoreCaseAndFlagDeleteFalse(Pageable pageable,String name);
 
 }

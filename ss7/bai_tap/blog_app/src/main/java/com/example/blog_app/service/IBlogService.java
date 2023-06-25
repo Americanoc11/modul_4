@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Objects;
 
 public interface IBlogService {
 
@@ -19,4 +20,8 @@ public interface IBlogService {
     List<Blog> findBlogByNameContainingIgnoreCase(String name);
 
     Page<Blog> findAllByFlagDeleteFalse(Pageable pageable);
+
+    boolean existsById(Integer id);
+
+    Page<Blog> findBlogByNameContainingIgnoreCaseAndFlagDeleteFalse(Pageable pageable, String name);
 }
