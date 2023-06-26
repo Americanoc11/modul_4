@@ -14,24 +14,24 @@ public class MusicService implements IMusicService {
 
 
     @Override
-    public List<Music> findAll() {
-        return iMusicRepository.findAll();
+    public List<Music> findAllByFlagDeleteIsFalse() {
+        return iMusicRepository.findAllByFlagDeleteIsFalse();
     }
 
     @Override
     public Music save(Music music) {
+        music.setFlagDelete(false);
         return iMusicRepository.save(music);
     }
 
     @Override
-    public Music update(Music music) {
-//        boolean check=this.exitsById(music.getId());
-//        if (check) {
-//            return iMusicRepository.save(music);
-//        } else {
-//            return this.findById(music.getId());
-//        }
-        return null;
+    public void update(Music music) {
+        boolean check = this.exitsById(music.getId());
+        if (check) {
+            iMusicRepository.save(music);
+        } else {
+            this.findById(music.getId());
+        }
     }
 
     @Override
@@ -41,14 +41,9 @@ public class MusicService implements IMusicService {
 
     @Override
     public void delete(Integer id) {
-//        if (this.exitsById(id)) {
-//            Music music = this.findById(id);
-//            music.setFlagDelete(true);
-//            iMusicRepository.save(music);
-//        } else {
-//            this.findById(id);
-//        }
-
+        Music music = this.findById(id);
+        music.setFlagDelete(true);
+        iMusicRepository.save(music);
     }
 
     @Override

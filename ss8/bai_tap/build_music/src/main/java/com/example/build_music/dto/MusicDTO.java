@@ -8,19 +8,25 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
 public class MusicDTO {
     private Integer id;
-    @Size(max = 800, message = "Tên bài hát tối đa 800 kí tự")
+    @Size(min = 1, max = 800, message = "Tên bài hát tối đa 800 kí tự")
     @NotBlank(message = "Không được phép để trống")
+    @Pattern(regexp = "^[\\w ]+$", message = "Không được chứa các kí tự đặc biệt")
     private String name;
-    @Size(max = 800, message = "Tên bài hát tối đa 800 kí tự")
+    @Size(min = 1, max = 300, message = "Tên bài hát tối đa 800 kí tự")
     @NotBlank(message = "Không được phép để trống")
+    @Pattern(regexp = "^[\\w ]+$", message = "Không được chứa các kí tự đặc biệt")
+
     private String artist;
-    @Size(max = 800, message = "Tên bài hát tối đa 800 kí tự")
+    @Size(min=1,max = 1000, message = "Tên bài hát tối đa 800 kí tự")
     @NotBlank(message = "Không được phép để trống")
+    @Pattern(regexp = "^[\\w ]+$", message = "Không được chứa các kí tự đặc biệt")
+
     private String musicType;
     private boolean flagDelete;
 
