@@ -15,7 +15,6 @@ public class BlogService implements IBlogService {
     private IBlogRepository iBlogRepository;
 
 
-
     @Override
     public void save(Blog blog) {
         blog.setFlagDelete(false);
@@ -35,7 +34,7 @@ public class BlogService implements IBlogService {
     }
     @Override
     public void update(Blog blog) {
-        this.iBlogRepository.saveAndFlush(blog);
+        this.iBlogRepository.save(blog);
     }
 
 

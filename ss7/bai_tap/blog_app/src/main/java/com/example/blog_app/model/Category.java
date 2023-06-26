@@ -8,14 +8,29 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(name = "name",unique = true,nullable = false)
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
+    private boolean flagDelete;
 
     public Category() {
     }
 
+    public Category(Integer id, String name, boolean flagDelete) {
+        this.id = id;
+        this.name = name;
+        this.flagDelete = flagDelete;
+    }
+
     public Category(String name) {
         this.name = name;
+    }
+
+    public boolean isFlagDelete() {
+        return flagDelete;
+    }
+
+    public void setFlagDelete(boolean flagDelete) {
+        this.flagDelete = flagDelete;
     }
 
     public Category(Integer id, String name) {
