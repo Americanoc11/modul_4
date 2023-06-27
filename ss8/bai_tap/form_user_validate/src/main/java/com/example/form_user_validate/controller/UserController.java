@@ -19,7 +19,7 @@ import javax.validation.Valid;
 public class UserController {
     @GetMapping("")
     public String showForm(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserDTO());
         return "form";
     }
 
