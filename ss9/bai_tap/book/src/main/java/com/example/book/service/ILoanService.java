@@ -17,4 +17,5 @@ public interface ILoanService {
     boolean existsById(Integer id);
 
     Loan findByCode(Integer code);
+
 }

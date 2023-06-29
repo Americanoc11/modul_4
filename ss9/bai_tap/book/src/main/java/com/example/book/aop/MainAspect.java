@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
-public class mainAspect {
+public class MainAspect {
     private long numberOfRequestsToServer = 0;
 
     @Pointcut("within(com.example.book.controller.*)")

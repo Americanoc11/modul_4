@@ -110,12 +110,24 @@ public class BookController {
     }
 
     @PostMapping("/form-return-book")
-    public String formReturnBook(@RequestParam("code") Integer code) {
-        Loan loan = iLoanService.findByCode(code);
-        Book book = iBookService.findById(loan.getBook().getId());
-        book.setQuantity(book.getQuantity() + 1);
-        iBookService.create(book);
-        iLoanService.delete(loan.getId());
+    public String formReturnBook(@RequestParam("code") Integer code, RedirectAttributes redirectAttributes) throws Exception {
+        List<Loan> loanList = iLoanService.findAll();
+        boolean check = false;
+        for (Loan l : loanList) {
+            if (l.getCode() ==(int) code) {
+                check = true;
+                break;
+            }
+        }
+        if (check) {
+            Loan loan = iLoanService.findByCode(code);
+            Book book = iBookService.findById(loan.getBook().getId());
+            book.setQuantity(book.getQuantity() + 1);
+            iBookService.create(book);
+            iLoanService.delete(loan.getId());
+        } else {
+            redirectAttributes.addFlashAttribute("msg", "Invalid code: " + code);
+        }
         return "redirect:/books";
     }
 }

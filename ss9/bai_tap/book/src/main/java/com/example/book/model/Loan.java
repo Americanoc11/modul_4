@@ -1,5 +1,7 @@
 package com.example.book.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;

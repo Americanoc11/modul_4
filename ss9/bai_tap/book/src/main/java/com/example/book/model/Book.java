@@ -1,5 +1,7 @@
 package com.example.book.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,6 +17,8 @@ public class Book {
     private String description;
     private int quantity;
     @OneToMany(mappedBy = "book")
+    @JsonBackReference
+
     private List<Loan> loan;
     @Column(name = "is_delete")
     private boolean isFlagDelete;
