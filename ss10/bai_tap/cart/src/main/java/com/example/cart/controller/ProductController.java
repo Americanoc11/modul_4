@@ -20,8 +20,7 @@ import java.util.Optional;
 public class ProductController {
     @Autowired
     private IProductService iProductService;
-    @Autowired
-    HttpSession httpSession;
+
 
     @ModelAttribute("cart")
     public Cart setupCart() {
