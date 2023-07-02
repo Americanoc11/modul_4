@@ -7,6 +7,7 @@ import com.example.blog_app.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,42 +27,50 @@ public class BlogController {
     private ICategoryService iCategoryService;
 
 
-    //    @GetMapping("")
-//    public String showList(Model model,
-//                           @PageableDefault(size = 2)
-//                           Pageable pageable) {
-//        Page<Blog> blogList = iBlogService.findAllByFlagDeleteFalse(pageable);
-//        List<Category> categoryList = iCategoryService.findAll();
-//        model.addAttribute("category", new Category());
-//        model.addAttribute("categoryList", categoryList);
-//        model.addAttribute("blog", new Blog());
-//        model.addAttribute("blogList", blogList);
-//        return "/blog/list";
-//    }
-    @GetMapping("/blog/list")
-    public List<Blog> getblog() {
-        return this.iBlogService.getBlogs();
+    @GetMapping("/list")
+    public ResponseEntity<List<Blog>> getblog() {
+        return new ResponseEntity<>(iBlogService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/category/list")
-    public List<Category> getCategory() {
-        return this.iCategoryService.getCategory();
-    }
 
     @PostMapping("/create")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createBlog(@RequestBody Blog blog) {
+    public ResponseEntity<?> createProduct(@RequestBody Blog blog) {
         iBlogService.create(blog);
-    }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }// lỗi k bắt được category
+
 
     @GetMapping("/details/{id}")
-    public Blog getBlogDetails(@PathVariable Integer id) {
-        return this.iBlogService.getUserDetail(id);
+    public ResponseEntity<?> getBlogDetails(@PathVariable Integer id) {
+        boolean check = iBlogService.existsById(id);
+        if (check) {
+            return new ResponseEntity<>(iBlogService.findById(id), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> deleteBlog(@PathVariable("id") Integer id) {
+        boolean check = iBlogService.existsById(id);
+        if (check) {
+            iBlogService.delete(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/update")
-    public void updateBlog(@RequestBody Blog blog) {
-        this.iBlogService.update(blog);
+    public ResponseEntity<?> updateBlog(@RequestBody Blog blog) {
+        boolean check = iBlogService.existsById(blog.getId());
+        if (check) {
+            iBlogService.update(blog);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/blog-list-category/{name}")
@@ -70,59 +79,5 @@ public class BlogController {
         List<Blog> blogList = iBlogService.findAllByCategory(category);
         return blogList;
     }
-//
-//    @PostMapping("/create")
-//    public String createBlog(@ModelAttribute("blog") Blog blog) {
-//        iBlogService.save(blog);
-//        return "redirect:/blog";
-//    }
 
-
-//    @PostMapping("/delete")
-//    public String deleteBlog(@RequestParam("id") Integer id, RedirectAttributes redirectAttributes) {
-//        Boolean check = iBlogService.existsById(id);
-//        if (iBlogService.existsById(id)) {
-//            iBlogService.deleted(id);
-//
-//        } else {
-//            redirectAttributes.addFlashAttribute("invalidIDMessage", "Invalid ID!");
-//        }
-//        return "redirect:/blog";
-//    }
-//
-//    @GetMapping("/update/{id}")
-//    public String showFormEdit(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
-//        Boolean check = iBlogService.existsById(id);
-//        if (check) {
-//            model.addAttribute("blog", iBlogService.findById(id));
-//        } else {
-//            redirectAttributes.addFlashAttribute("invalidIDMessage", "Invalid ID!");
-//            return "redirect:/blog";
-//        }
-//        return "/blog/edit";
-//    }
-//
-//    @PostMapping("/update")
-//    public String updateBlog(@ModelAttribute("blog") Blog blog, RedirectAttributes redirectAttributes) {
-//        Boolean check = iBlogService.existsById(blog.getId());
-//        if (check) {
-//            iBlogService.update(blog);
-//        } else {
-//            redirectAttributes.addFlashAttribute("invalidIDMessage", "Invalid ID!");
-//        }
-//        return "redirect:/blog";
-//    }
-//
-//    @GetMapping("/search")
-//    public String searchProduct(@RequestParam("name") String name, Model model,
-//                                @PageableDefault(size = 2)
-//                                Pageable pageable) {
-//        Page<Blog> blogList = iBlogService.findBlogByNameContainingIgnoreCaseAndFlagDeleteFalse(pageable, name);
-//        List<Category> categoryList = iCategoryService.findAll();
-//        model.addAttribute("category", new Category());
-//        model.addAttribute("categoryList", categoryList);
-//        model.addAttribute("blog", new Blog());
-//        model.addAttribute("blogList", blogList);
-//        return "blog/list";
-//    }
 }

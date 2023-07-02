@@ -57,6 +57,11 @@ public class CategoryService implements ICategoryService {
         return iCategoryRepository.findAll();
     }
 
+    @Override
+    public void create(Category category) {
+        category.setFlagDelete(false);
+        iCategoryRepository.save(category);
+    }
 
 
 }

@@ -3,6 +3,8 @@ package com.example.blog_app.controller;
 import com.example.blog_app.model.Category;
 import com.example.blog_app.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,45 +18,47 @@ public class CategoryController {
     @Autowired
     private ICategoryService iCategoryService;
 
-    @GetMapping("")
-    public String showList(Model model) {
-        List<Category> categoryList = iCategoryService.findAll();
-        model.addAttribute("category", new Category());
-        model.addAttribute("categoryList", categoryList);
-        return "/blog/categories/list";
+    @GetMapping("/category/list")
+    public ResponseEntity<List<Category>> getCategory() {
+        return new ResponseEntity<>(iCategoryService.findAll(), HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public String createCategory(@ModelAttribute("category") Category category, Model model) {
-        iCategoryService.save(category);
-        return "redirect:/categories";
+    public ResponseEntity<?> createCategory(@RequestBody Category category) {
+        iCategoryService.create(category);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
-    @GetMapping("/update/{id}")
-    public String showFormEdit(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
-        if (iCategoryService.exitsById(id)) {
-            model.addAttribute("category", iCategoryService.findById(id));
-            return "/blog/categories/edit";
+    @GetMapping("/details/{id}")
+    public ResponseEntity<?> getCategoryDetails(@PathVariable Integer id) {
+        boolean check = iCategoryService.exitsById(id);
+        if (check) {
+            return new ResponseEntity<>(iCategoryService.findById(id), HttpStatus.OK);
         } else {
-            redirectAttributes.addFlashAttribute("invalidIDMessage", "Invalid ID!");
-            return "redirect:/categories";
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> deleteCategory(@PathVariable("id") Integer id) {
+        boolean check = iCategoryService.exitsById(id);
+        if (check) {
+            iCategoryService.deleted(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping("/update")
-    public String updateCategory(@ModelAttribute("category") Category category) {
-        iCategoryService.update(category);
-        return "redirect:/categories";
-    }
-
-    @PostMapping("/delete")
-    public String deleteCategory(@RequestParam("id") Integer id,RedirectAttributes redirectAttributes) {
-        boolean check = iCategoryService.exitsById(id);
-        if (check){
-            iCategoryService.deleted(id);
-        }else {
-            redirectAttributes.addFlashAttribute("invalidIDMessage","Invalid ID");
+    public ResponseEntity<?> updateCategory(@RequestBody Category category) {
+        boolean check = iCategoryService.exitsById(category.getId());
+        if (check) {
+            iCategoryService.update(category);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return "redirect:/categories";
     }
 }

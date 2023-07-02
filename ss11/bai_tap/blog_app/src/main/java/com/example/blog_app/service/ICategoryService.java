@@ -22,4 +22,5 @@ public interface ICategoryService {
 
     List<Category> getCategory();
 
+    void create(Category category);
 }

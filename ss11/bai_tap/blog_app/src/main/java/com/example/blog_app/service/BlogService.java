@@ -17,19 +17,6 @@ public class BlogService implements IBlogService {
 
 
     @Override
-    public void save(Blog blog) {
-        blog.setFlagDelete(false);
-        iBlogRepository.save(blog);
-    }
-
-    @Override
-    public void deleted(Integer id) {
-        Blog blog = this.findById(id);
-        blog.setFlagDelete(true);
-        iBlogRepository.save(blog);
-    }
-
-    @Override
     public Blog findById(Integer id) {
         return this.iBlogRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Not found blog by id" + id));
     }
@@ -45,37 +32,19 @@ public class BlogService implements IBlogService {
 
 
     @Override
-    public List<Blog> findBlogByNameContainingIgnoreCase(String name) {
-        return iBlogRepository.findBlogByNameContainingIgnoreCase(name);
-    }
-
-    @Override
-    public Page<Blog> findAllByFlagDeleteFalse(Pageable pageable) {
-        return iBlogRepository.findAllByFlagDeleteFalse(pageable);
-    }
-
-    @Override
     public boolean existsById(Integer id) {
         return iBlogRepository.existsById(id);
     }
 
     @Override
-    public Page<Blog> findBlogByNameContainingIgnoreCaseAndFlagDeleteFalse(Pageable pageable, String name) {
-        return iBlogRepository.findBlogByNameContainingIgnoreCaseAndFlagDeleteFalse(pageable, name);
-    }
-
-    @Override
-    public List<Blog> getBlogs() {
-        return iBlogRepository.findAll();
-    }
-
-    @Override
     public List<Blog> findAllByCategory(Category category) {
-        return iBlogRepository.findAllByCatelogy(category);
+        return null;
     }
+
 
     @Override
     public void create(Blog blog) {
+        blog.setFlagDelete(false);
         iBlogRepository.save(blog);
     }
 
@@ -84,6 +53,17 @@ public class BlogService implements IBlogService {
         return this.iBlogRepository.findById(id).orElseThrow(null);
     }
 
+    @Override
+    public List<Blog> findAll() {
+        return iBlogRepository.findAll();
+    }
+
+    @Override
+    public void delete(Integer id) {
+        Blog blog = this.findById(id);
+        blog.setFlagDelete(true);
+        iBlogRepository.save(blog);
+    }
 
 
 }

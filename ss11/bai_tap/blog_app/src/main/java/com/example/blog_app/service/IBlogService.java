@@ -10,23 +10,14 @@ import java.util.Objects;
 
 public interface IBlogService {
 
-    void save(Blog blog);
-
-    void deleted(Integer id);
 
     Blog findById(Integer id);
 
     void update(Blog blog);
 
-    List<Blog> findBlogByNameContainingIgnoreCase(String name);
-
-    Page<Blog> findAllByFlagDeleteFalse(Pageable pageable);
 
     boolean existsById(Integer id);
 
-    Page<Blog> findBlogByNameContainingIgnoreCaseAndFlagDeleteFalse(Pageable pageable, String name);
-
-    List<Blog> getBlogs();
 
     List<Blog> findAllByCategory(Category category);
 
@@ -34,5 +25,7 @@ public interface IBlogService {
 
     Blog getUserDetail(Integer id);
 
-    List<Blog> findAllByName(String name);
+    List<Blog> findAll();
+
+    void delete(Integer id);
 }

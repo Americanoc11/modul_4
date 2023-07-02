@@ -20,8 +20,6 @@ import java.util.Optional;
 public class ProductController {
     @Autowired
     private IProductService iProductService;
-
-
     @ModelAttribute("cart")
     public Cart setupCart() {
         return new Cart();
@@ -36,8 +34,7 @@ public class ProductController {
 
     @GetMapping("/shop")
     public ModelAndView showShop() {
-        ModelAndView modelAndView = new ModelAndView("/shop");
-        modelAndView.addObject("products", iProductService.findAll());
+        ModelAndView modelAndView = new ModelAndView("/shop","products", iProductService.findAll());
         return modelAndView;
     }
 
