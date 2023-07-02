@@ -74,9 +74,13 @@ public class BlogController {
     }
 
     @GetMapping("/blog-list-category/{name}")
-    public List<Blog> getBlogByCategory(@PathVariable(value = "name") String name) {
-        List<Blog> blogList=iBlogService.getBlogByCategoryName(name);
-        return blogList;
+    public ResponseEntity<List<Blog>> getBlogByCategory(@PathVariable(value = "name") String name) {
+        List<Blog> blogList = iBlogService.getBlogByCategoryName(name);
+        if (blogList.size() != 0) {
+            return new ResponseEntity<>(iBlogService.getBlogByCategoryName(name), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 }
