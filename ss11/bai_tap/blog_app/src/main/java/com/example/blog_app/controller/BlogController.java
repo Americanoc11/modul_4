@@ -37,7 +37,7 @@ public class BlogController {
     public ResponseEntity<?> createProduct(@RequestBody Blog blog) {
         iBlogService.create(blog);
         return new ResponseEntity<>(HttpStatus.OK);
-    }// lỗi k bắt được category
+    }
 
 
     @GetMapping("/details/{id}")
