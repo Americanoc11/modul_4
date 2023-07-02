@@ -37,22 +37,10 @@ public class BlogService implements IBlogService {
     }
 
     @Override
-    public List<Blog> findAllByCategory(Category category) {
-        return null;
-    }
-
-
-    @Override
     public void create(Blog blog) {
         blog.setFlagDelete(false);
         iBlogRepository.save(blog);
     }
-
-    @Override
-    public Blog getUserDetail(Integer id) {
-        return this.iBlogRepository.findById(id).orElseThrow(null);
-    }
-
     @Override
     public List<Blog> findAll() {
         return iBlogRepository.findAll();
@@ -63,6 +51,13 @@ public class BlogService implements IBlogService {
         Blog blog = this.findById(id);
         blog.setFlagDelete(true);
         iBlogRepository.save(blog);
+    }
+
+
+
+    @Override
+    public List<Blog> getBlogByCategoryName(String name) {
+        return iBlogRepository.getBlogsByCategoryName(name);
     }
 
 

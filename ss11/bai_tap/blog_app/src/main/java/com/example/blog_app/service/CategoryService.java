@@ -42,10 +42,7 @@ public class CategoryService implements ICategoryService {
         this.iCategoryRepository.save(category);
     }
 
-    @Override
-    public Category findByNameContainingIgnoreCase(String name) {
-        return iCategoryRepository.findByNameContainingIgnoreCase(name);
-    }
+
 
     @Override
     public boolean exitsById(Integer id) {
@@ -61,6 +58,11 @@ public class CategoryService implements ICategoryService {
     public void create(Category category) {
         category.setFlagDelete(false);
         iCategoryRepository.save(category);
+    }
+
+    @Override
+    public Category findByName(String name) {
+        return iCategoryRepository.findAllByNameContainingIgnoreCase(name);
     }
 
 

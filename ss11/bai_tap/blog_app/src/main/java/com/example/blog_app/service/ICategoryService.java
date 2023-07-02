@@ -16,11 +16,12 @@ public interface ICategoryService {
 
     void update(Category category);
 
-    Category findByNameContainingIgnoreCase(String name);
 
     boolean exitsById(Integer id);
 
     List<Category> getCategory();
 
     void create(Category category);
+
+    Category findByName(String name);
 }

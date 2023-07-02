@@ -74,9 +74,8 @@ public class BlogController {
     }
 
     @GetMapping("/blog-list-category/{name}")
-    public List<Blog> getBlogByCategory(@PathVariable("name") String name) {
-        Category category = iCategoryService.findByNameContainingIgnoreCase(name);
-        List<Blog> blogList = iBlogService.findAllByCategory(category);
+    public List<Blog> getBlogByCategory(@PathVariable(value = "name") String name) {
+        List<Blog> blogList=iBlogService.getBlogByCategoryName(name);
         return blogList;
     }
 

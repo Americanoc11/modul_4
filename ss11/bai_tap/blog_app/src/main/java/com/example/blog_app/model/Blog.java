@@ -13,24 +13,24 @@ public class Blog {
     private String content;
     @ManyToOne
     @JoinColumn(name = "categories_id", nullable = false)
-    private Category categogy;
+    private Category category;
     @Column(name = "is_delete")
     private boolean flagDelete;
 
-    public Blog(Integer id, String name, String content, Category catelogy, boolean flagDelete) {
+    public Blog(Integer id, String name, String content, Category category, boolean flagDelete) {
         this.id = id;
         this.name = name;
         this.content = content;
-        this.categogy = catelogy;
+        this.category = category;
         this.flagDelete = flagDelete;
     }
 
-    public Category getCategogy() {
-        return categogy;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategogy(Category categogy) {
-        this.categogy = categogy;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public boolean isFlagDelete() {

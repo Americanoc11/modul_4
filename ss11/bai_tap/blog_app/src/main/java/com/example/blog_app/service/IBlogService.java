@@ -19,13 +19,13 @@ public interface IBlogService {
     boolean existsById(Integer id);
 
 
-    List<Blog> findAllByCategory(Category category);
-
     void create(Blog blog);
 
-    Blog getUserDetail(Integer id);
 
     List<Blog> findAll();
 
     void delete(Integer id);
+
+
+    List<Blog> getBlogByCategoryName(String name);
 }
