@@ -89,14 +89,20 @@ public class BlogController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
     @GetMapping("/search/{name}")
-    public ResponseEntity<List<Blog>> findAllByName(@PathVariable("name")String name){
-        List<Blog> blogList=iBlogService.findAllByName(name);
+    public ResponseEntity<List<Blog>> findAllByName(@PathVariable("name") String name) {
+        List<Blog> blogList = iBlogService.findAllByName(name);
         if (blogList.size() != 0) {
             return new ResponseEntity<>(blogList, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/limit/{number}")
+    public ResponseEntity<?> findAllByFlagDeleteIsFalseAndLimit(@PathVariable("number") Integer number) {
+        return new ResponseEntity<>(iBlogService.findAllByFlagDeleteIsFalseAndLimit(number), HttpStatus.OK);
     }
 
 }

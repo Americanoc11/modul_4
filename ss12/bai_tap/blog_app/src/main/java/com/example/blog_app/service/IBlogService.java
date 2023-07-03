@@ -29,4 +29,6 @@ public interface IBlogService {
     List<Blog> getBlogByCategoryName(String name);
 
     List<Blog> findAllByName(String name);
+
+    List<Blog> findAllByFlagDeleteIsFalseAndLimit(Integer number);
 }

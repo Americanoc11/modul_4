@@ -14,39 +14,49 @@
 <body>
 <!--header-->
 <div class="alert alert-success mb-1" role="alert">
-    <h2>Oh snap!</h2>
+    <h2>Blog</h2>
 </div>
 <!--header-->
 
 <!--nav-->
-<nav class="navbar mb-3 navbar-light bg-light">
-    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
-            data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-            aria-expanded="false" aria-label="Toggle navigation"></button>
-    <div class="collapse navbar-expand-md" id="collapsibleNavId">
-        <a class="navbar-brand" href="#">My App/Logo with Text</a>
-        <ul class="nav navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Nav 1 <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Nav 2</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="" id="dropdownId"
-                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nav 3 dropdown</a>
-                <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="#">Action 1</a>
-                    <a class="dropdown-item" href="#">Action 2</a>
-                </div>
-            </li>
-        </ul>
-        <form class="form-inline float-xs-right">
-            <input class="form-control" type="text" placeholder="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
-</nav>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs|pills btn btn-light mb-3" id="navId">
+    <li class="nav-item">
+        <a href="#tab1Id" class="nav-link active">Active</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+           aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#tab2Id">Action</a>
+            <a class="dropdown-item" href="#tab3Id">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#tabs5Id"></a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a href="#tab5Id" class="nav-link">Another link</a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link disabled">Disabled</a>
+    </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="tab1Id" role="tabpanel"></div>
+    <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
+    <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
+    <div class="tab-pane fade" id="tabs5Id" role="tabpanel"></div>
+    <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
+</div>
+
+<script>
+    $('#navId a').click(e => {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+</script>
 <!--nav-->
 
 <!--section-->
@@ -63,9 +73,10 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>title</th>
-                                <th>content</th>
-                                <th>category</th>
+                                <th>Title</th>
+                                <th>Content</th>
+                                <th>Category</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody id="blogList">
@@ -86,12 +97,21 @@
                         <!--                        <img class="card-img-top" src="..." alt="Card image cap">-->
                         <div class="card-body">
                             <p class="card-text" style="text-align: center">Actions</p>
-                            <form >
-                                <input type="text" name="search" id="search"  class="mb-1">
+                            <form>
+                                <input type="text" name="search" id="search" class="mb-1">
                                 <button type="button"
                                         class="btn btn-outline-primary"
                                         onclick="searchBlog()">
                                     Search
+                                </button>
+
+                            </form>
+                            <form>
+                                <input type="number" name="number" id="number" class="mb-1">
+                                <button type="button"
+                                        class="btn btn-outline-primary"
+                                        onclick="displayLimit()">
+                                    Show
                                 </button>
 
                             </form>
@@ -154,6 +174,32 @@
     </div>
 </div>
 <!--section-->
+<!-- Modal -->
+<div class="modal fade" id="modelIdDelete" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modelTitleId1"></h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you want delete blog?
+            </div>
+            <div class="modal-footer">
+                <form>
+                    <input type="hidden" name="id" id="idDelete">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">no</button>
+                    <button type="button" class="btn btn-primary"
+                            onclick="formRemove()">yes
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
@@ -174,6 +220,14 @@
                         <td>${blog.name}</td>
                         <td>${blog.content}</td>
                         <td>${blog.category.name}</td>
+                        <td><!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modelIdDelete"
+                        onclick="remove(${blog.id})">
+                          Delete
+                        </button>
+                        
+
+                        </td>
                         </tr>
                          `;
                     }
@@ -186,10 +240,27 @@
         })
     }
 
+    function remove(id) {
+        document.getElementById("idDelete").value = id;
+    }
+
+    function formRemove() {
+        const id = $("#idDelete").val();
+        const url = `http://localhost:8080/blog/${id}`;
+        $.ajax({
+            url: url,
+            type: "DELETE",
+            success: function () {
+                getListBlog();
+            },
+            error: function (error) {
+            }
+        })
+    }
 
     function searchBlog() {
-        const name =$("#search").val();
-        const url= `http://localhost:8080/blog/search/${name}`;
+        const name = $("#search").val();
+        const url = `http://localhost:8080/blog/search/${name}`;
         $.ajax({
             url: url,
             type: 'GET',
@@ -213,6 +284,34 @@
             }
         })
     }
+
+    function displayLimit() {
+        const number = $("#number").val();
+        const url = `http://localhost:8080/blog/limit/${number}`;
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (data) {
+                let blogStr = "";
+                for (let blog of data) {
+                    blogStr +=
+                        `
+                        <tr>
+                        <td>${blog.id}</td>
+                        <td>${blog.name}</td>
+                        <td>${blog.content}</td>
+                        <td>${blog.category.name}</td>
+                        </tr>
+                         `;
+                }
+                $("#blogList").html(blogStr);
+            },
+            error: function (error) {
+                // TODO
+            }
+        })
+    }
+
 </script>
 </body>
 </html>
