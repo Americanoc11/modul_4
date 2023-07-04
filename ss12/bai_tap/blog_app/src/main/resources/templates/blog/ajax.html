@@ -174,7 +174,7 @@
     </div>
 </div>
 <!--section-->
-<!-- Modal -->
+<!-- Modal Delete-->
 <div class="modal fade" id="modelIdDelete" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -225,8 +225,6 @@
                         onclick="remove(${blog.id})">
                           Delete
                         </button>
-                        
-
                         </td>
                         </tr>
                          `;
@@ -274,6 +272,12 @@
                         <td>${blog.name}</td>
                         <td>${blog.content}</td>
                         <td>${blog.category.name}</td>
+                        <td><!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modelIdDelete"
+                        onclick="remove(${blog.id})">
+                          Delete
+                        </button>
+                        </td>
                         </tr>
                          `;
                 }
@@ -301,6 +305,12 @@
                         <td>${blog.name}</td>
                         <td>${blog.content}</td>
                         <td>${blog.category.name}</td>
+                        <td><!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modelIdDelete"
+                        onclick="remove(${blog.id})">
+                          Delete
+                        </button>
+                        </td>
                         </tr>
                          `;
                 }
@@ -311,7 +321,6 @@
             }
         })
     }
-
 </script>
 </body>
 </html>

@@ -27,20 +27,20 @@ public class BlogController {
     private ICategoryService iCategoryService;
 
 
-    @GetMapping("/list")
+    @GetMapping()
     public ResponseEntity<List<Blog>> getblog() {
         return new ResponseEntity<>(iBlogService.findAll(), HttpStatus.OK);
     }
 
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<?> createProduct(@RequestBody Blog blog) {
         iBlogService.create(blog);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
-    @GetMapping("/details/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<?> getBlogDetails(@PathVariable Integer id) {
         boolean check = iBlogService.existsById(id);
         if (check) {
@@ -51,7 +51,7 @@ public class BlogController {
     }
 
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBlog(@PathVariable("id") Integer id) {
         boolean check = iBlogService.existsById(id);
         if (check) {
@@ -62,9 +62,9 @@ public class BlogController {
         }
     }
 
-    @PostMapping("/update")
-    public ResponseEntity<?> updateBlog(@RequestBody Blog blog) {
-        boolean check = iBlogService.existsById(blog.getId());
+    @PostMapping("/update/{id}")
+    public ResponseEntity<?> updateBlog(@RequestBody Blog blog, @PathVariable("id") Integer id) {
+        boolean check = iBlogService.existsById(id);
         if (check) {
             iBlogService.update(blog);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -73,7 +73,7 @@ public class BlogController {
         }
     }
 
-    @GetMapping("/blog-list-category/{name}")
+    @GetMapping("/{name}")
     public ResponseEntity<List<Blog>> getBlogByCategory(@PathVariable(value = "name") String name) {
         List<Blog> blogList = iBlogService.getBlogByCategoryName(name);
         if (blogList.size() != 0) {
