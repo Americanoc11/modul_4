@@ -62,7 +62,7 @@ public class BlogController {
         }
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateBlog(@RequestBody Blog blog, @PathVariable("id") Integer id) {
         boolean check = iBlogService.existsById(id);
         if (check) {
